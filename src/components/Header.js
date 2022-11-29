@@ -19,7 +19,7 @@ const Header = ({ favs }) => {
 
             {location.pathname !== "/" && (
               <>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul className="navbar-nav me-auto">
                   <li className="nav-item">
                     <Link className="nav-link" to="/">
                       <BsHouseDoorFill />
