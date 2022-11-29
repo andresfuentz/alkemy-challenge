@@ -78,7 +78,6 @@ const Login = ({ token, setToken }) => {
                   name="password"
                 />
               </label>
-
               <br />
               <button type="submit" className="btn btn-success my-2">
                 Submit
