@@ -13,13 +13,13 @@ const Header = ({ favs }) => {
   return (
     <>
       <header className="sticky-top">
-        <div className="navbar navbar-expand-sm navbar-dark bg-dark">
-          <div className="container">
-            <span className="navbar-brand">The Movie List</span>
+        <div className="navbar navbar-expand navbar-dark bg-dark">
+          <div className="container-fluid">
+            <ul className="navbar-nav me-auto">
+              <li className="navbar-brand">The Movie List</li>
 
-            {location.pathname !== "/" && (
-              <>
-                <ul className="navbar-nav me-auto">
+              {location.pathname !== "/" && (
+                <>
                   <li className="nav-item">
                     <Link className="nav-link" to="/">
                       <BsHouseDoorFill />
@@ -33,10 +33,11 @@ const Header = ({ favs }) => {
                       </span>
                     </Link>
                   </li>
-                </ul>
-                <Search />
-              </>
-            )}
+                </>
+              )}
+            </ul>
+
+            {location.pathname !== "/" && <Search />}
           </div>
         </div>
       </header>
