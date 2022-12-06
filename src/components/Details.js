@@ -5,24 +5,30 @@ import swAlert from "@sweetalert/with-react";
 
 // hooks
 import { useState, useEffect } from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 
 // resources
 import poster from "../images/default-movie.jpg";
 
 const Details = ({ token }) => {
   const [movie, setMovie] = useState([]);
+  const [credits, setCredits] = useState([]);
   const [searchParams] = useSearchParams();
 
   let movieID = searchParams.get("id");
 
   useEffect(() => {
-    const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.REACT_APP_TMDB_TOKEN}&language=en-US`;
+    const movieEndPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.REACT_APP_TMDB_TOKEN}&language=en-US`;
+    const creditsEndPoint = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.REACT_APP_TMDB_TOKEN}&language=en-US`;
+
     axios
-      .get(endPoint)
-      .then((response) => {
-        setMovie(response.data);
-      })
+      .all([axios.get(movieEndPoint), axios.get(creditsEndPoint)])
+      .then(
+        axios.spread((movieResp, creditsResp) => {
+          setMovie(movieResp.data);
+          setCredits(creditsResp.data);
+        })
+      )
       .catch((err) => {
         swAlert(
           <>
@@ -61,6 +67,27 @@ const Details = ({ token }) => {
               </small>
             ))}
             <p className="mt-2">{movie.overview}</p>
+            <br />
+            <strong>Director: </strong>
+            {credits.crew.map(
+              (member) =>
+                member.job === "Director" && (
+                  <span className="badge bg-secondary me-1">{member.name}</span>
+                )
+            )}
+            <br />
+            <strong>Cast:</strong>
+            {credits.cast.map(
+              (member, i) =>
+                i < 5 && (
+                  <Link
+                    to={`/castDetails?id=${member.id}&name=${member.name}`}
+                    className="badge bg-light me-1"
+                  >
+                    {member.name}
+                  </Link>
+                )
+            )}
             <br />
             <strong>Release date:</strong> {movie.release_date}
             <br />

@@ -24,7 +24,7 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
                 className="card-img-top"
                 alt="movie poster"
               />
-              <h2 className="d-flex position-absolute top-0 end-0 m-2">
+              <h1 className="d-flex position-absolute top-0 end-0 m-2">
                 <BsHeartFill
                   className={`${
                     favs.some((m) => m.id === movie.id)
@@ -32,14 +32,14 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
                       : "text-light"
                   }`}
                 />
-              </h2>
-              <h2
+              </h1>
+              <h1
                 role="button"
                 onClick={() => addOrRemoveFromFavs(movie)}
                 className="d-flex position-absolute top-0 end-0 m-2"
               >
                 <BsHeart className="text-dark" />
-              </h2>
+              </h1>
               <div className="card-body">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">

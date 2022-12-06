@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 //components
 import Login from "./components/Login";
 import List from "./components/List";
+import PersonList from "./components/PersonList";
 import Details from "./components/Details";
 import Results from "./components/Results";
 import Favs from "./components/Favs";
@@ -69,6 +70,16 @@ const App = () => {
             }
           />
           <Route path="/details" element={<Details token={token} />} />
+          <Route
+            path="/castDetails"
+            element={
+              <PersonList
+                token={token}
+                favs={favourites}
+                addOrRemoveFromFavs={addOrRemoveFromFavs}
+              />
+            }
+          />
           <Route
             path="/results"
             element={
