@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import List from "./components/List";
 import PersonList from "./components/PersonList";
+import DirectorList from "./components/DirectorList";
 import Details from "./components/Details";
 import Results from "./components/Results";
 import Favs from "./components/Favs";
@@ -74,6 +75,16 @@ const App = () => {
             path="/castDetails"
             element={
               <PersonList
+                token={token}
+                favs={favourites}
+                addOrRemoveFromFavs={addOrRemoveFromFavs}
+              />
+            }
+          />
+          <Route
+            path="/directorDetails"
+            element={
+              <DirectorList
                 token={token}
                 favs={favourites}
                 addOrRemoveFromFavs={addOrRemoveFromFavs}

@@ -10,8 +10,8 @@ import { Navigate, useSearchParams } from "react-router-dom";
 // components
 import MovieList from "./MovieList";
 
-const PersonList = ({ token, favs, addOrRemoveFromFavs }) => {
-  const [personList, setPersonList] = useState([]);
+const DirectorList = ({ token, favs, addOrRemoveFromFavs }) => {
+  const [directorList, setDirectorList] = useState([]);
   const [searchParams] = useSearchParams();
 
   let personID = searchParams.get("id");
@@ -22,7 +22,9 @@ const PersonList = ({ token, favs, addOrRemoveFromFavs }) => {
     axios
       .get(endPoint)
       .then((response) => {
-        setPersonList(response.data.cast);
+        setDirectorList(
+          response.data.crew.filter((person) => person.job === "Director")
+        );
       })
       .catch((err) => {
         swAlert(
@@ -38,7 +40,7 @@ const PersonList = ({ token, favs, addOrRemoveFromFavs }) => {
     <div className="row mb-4">
       {!token ? (
         <Navigate to={"/"} />
-      ) : personList.length === 0 ? (
+      ) : directorList.length === 0 ? (
         <div className="d-flex justify-content-center mt-3">
           <div className="spinner-border text-dark" role="status"></div>
         </div>
@@ -48,7 +50,7 @@ const PersonList = ({ token, favs, addOrRemoveFromFavs }) => {
             {personName} filmography:
           </h2>
           <MovieList
-            movieList={personList}
+            movieList={directorList}
             favs={favs}
             addOrRemoveFromFavs={addOrRemoveFromFavs}
           />
@@ -58,4 +60,4 @@ const PersonList = ({ token, favs, addOrRemoveFromFavs }) => {
   );
 };
 
-export default PersonList;
+export default DirectorList;

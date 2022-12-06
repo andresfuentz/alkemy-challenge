@@ -67,42 +67,62 @@ const Details = ({ token }) => {
               </small>
             ))}
             <p className="mt-2">{movie.overview}</p>
-            <br />
-            <strong>Director: </strong>
-            {credits.crew.map(
-              (member) =>
-                member.job === "Director" && (
-                  <span className="badge bg-secondary me-1">{member.name}</span>
-                )
-            )}
-            <br />
-            <strong>Cast:</strong>
-            {credits.cast.map(
-              (member, i) =>
-                i < 5 && (
-                  <Link
-                    to={`/castDetails?id=${member.id}&name=${member.name}`}
-                    className="badge bg-light me-1"
-                  >
-                    {member.name}
-                  </Link>
-                )
-            )}
-            <br />
-            <strong>Release date:</strong> {movie.release_date}
-            <br />
-            <strong>Rating:</strong>{" "}
-            {movie.vote_average.toString().substring(0, 3)}
-            <br />
-            <strong>
-              Language{movie.spoken_languages.length > 1 && "s"}:
-            </strong>{" "}
-            {movie.spoken_languages.map((lang, i) => (
-              <span key={i}>
-                {lang.english_name.split(";")[0]}
-                {i + 1 === movie.spoken_languages.length ? "." : ", "}
-              </span>
-            ))}
+            <div className="mt-4">
+              <strong>Director: </strong>
+              {credits.crew.map(
+                (member) =>
+                  member.job === "Director" && (
+                    <Link
+                      key={member.id}
+                      to={`/directorDetails?id=${member.id}&name=${member.name}`}
+                    >
+                      <button
+                        type="button"
+                        className="badge rounded-pill text-bg-light me-1"
+                      >
+                        {member.name}
+                      </button>
+                    </Link>
+                  )
+              )}
+            </div>
+            <div className="mt-2">
+              <strong>Cast: </strong>
+              {credits.cast.map(
+                (member, i) =>
+                  i < 5 && (
+                    <Link
+                      key={member.id}
+                      to={`/castDetails?id=${member.id}&name=${member.name}`}
+                    >
+                      <button
+                        type="button"
+                        className="badge rounded-pill text-bg-light me-1"
+                      >
+                        {member.name}
+                      </button>
+                    </Link>
+                  )
+              )}
+            </div>
+            <div className="mt-2">
+              <strong>Release date:</strong> {movie.release_date}
+            </div>
+            <div className="mt-1">
+              <strong>Rating:</strong>{" "}
+              {movie.vote_average.toString().substring(0, 3)}
+            </div>
+            <div className="mt-1">
+              <strong>
+                Language{movie.spoken_languages.length > 1 && "s"}:
+              </strong>{" "}
+              {movie.spoken_languages.map((lang, i) => (
+                <span key={i}>
+                  {lang.english_name.split(";")[0]}
+                  {i + 1 === movie.spoken_languages.length ? "." : ", "}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       )}
