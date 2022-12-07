@@ -16,9 +16,11 @@ const Header = ({ favs }) => {
         <div className="navbar navbar-expand navbar-dark bg-dark">
           <div className="container-fluid">
             <ul className="navbar-nav me-auto">
-              <Link className="nav-link" to="/">
-                <li className="navbar-brand">The Movie List</li>
-              </Link>
+              <li className="navbar-brand">
+                <Link className="nav-link" to="/">
+                  The Movie List
+                </Link>
+              </li>
 
               {location.pathname !== "/" && (
                 <>
