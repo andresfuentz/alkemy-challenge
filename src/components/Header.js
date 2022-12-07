@@ -3,7 +3,7 @@ import React from "react";
 
 // hooks
 import { Link, useLocation } from "react-router-dom";
-import { BsHouseDoorFill, BsHeartFill } from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 
 // components
 import Search from "./Search";
