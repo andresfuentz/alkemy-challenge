@@ -15,7 +15,7 @@ const Header = ({ favs }) => {
         <div className="navbar navbar-expand navbar-dark bg-dark">
           <div className="container-fluid">
             <ul className="navbar-nav">
-              <li className="navbar-brand border me-0">
+              <li className="navbar-brand me-0">
                 <Link className="nav-link" to="/">
                   {"{ "}
                   <small className="text-secondary">the</small>

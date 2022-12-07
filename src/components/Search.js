@@ -25,7 +25,7 @@ const Search = () => {
   };
   return (
     <>
-      <form onSubmit={submitHandler} className="">
+      <form onSubmit={submitHandler} className="mx-1">
         <div className="input-group input-group-sm">
           <input
             className="form-control"
