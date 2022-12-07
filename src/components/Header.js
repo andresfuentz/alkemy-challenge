@@ -3,7 +3,6 @@ import React from "react";
 
 // hooks
 import { Link, useLocation } from "react-router-dom";
-import { BsHeartFill } from "react-icons/bs";
 
 // components
 import Search from "./Search";
@@ -15,24 +14,26 @@ const Header = ({ favs }) => {
       <header className="sticky-top">
         <div className="navbar navbar-expand navbar-dark bg-dark">
           <div className="container-fluid">
-            <ul className="navbar-nav me-auto">
-              <li className="navbar-brand">
+            <ul className="navbar-nav">
+              <li className="navbar-brand border me-0">
                 <Link className="nav-link" to="/">
-                  The Movie List
+                  {"{ "}
+                  <small className="text-secondary">the</small>
+                  <span className="text-light"></span>MOVIE
+                  <small className="text-secondary">list</small>
+                  {" }"}
                 </Link>
               </li>
 
               {location.pathname !== "/" && (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/favs">
-                      <BsHeartFill />
-                      <span className="top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {favs.length}
-                      </span>
-                    </Link>
-                  </li>
-                </>
+                <li className="nav-item d-flex align-items-center mx-1">
+                  <Link className="nav-link" to="/favs">
+                    Favs{" "}
+                    <small className="badge bg-danger text-white">
+                      {favs.length}
+                    </small>
+                  </Link>
+                </li>
               )}
             </ul>
 
