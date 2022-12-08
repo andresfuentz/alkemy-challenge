@@ -14,7 +14,7 @@ const Favs = ({ token, favourites, addOrRemoveFromFavs }) => {
       <div className="row mb-4">
         {favourites.length === 0 ? (
           <h2 className="d-flex justify-content-center mt-3">
-            You don't have favs yet!
+            You don't have favs!
           </h2>
         ) : (
           <>
