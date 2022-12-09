@@ -6,11 +6,13 @@ import swAlert from "@sweetalert/with-react";
 // hooks
 import { useState, useEffect } from "react";
 import { Link, Navigate, useSearchParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // resources
 import poster from "../images/default-movie.jpg";
 
-const Details = ({ token }) => {
+const Details = () => {
+  const { isAuthenticated } = useAuth0();
   const [movie, setMovie] = useState([]);
   const [credits, setCredits] = useState([]);
   const [searchParams] = useSearchParams();
@@ -41,7 +43,7 @@ const Details = ({ token }) => {
 
   return (
     <>
-      {!token && <Navigate to={"/"} />}
+      {!isAuthenticated && <Navigate to={"/"} />}
       {movie.length === 0 ? (
         <div className="d-flex justify-content-center mt-3">
           <div className="spinner-border text-dark" role="status"></div>

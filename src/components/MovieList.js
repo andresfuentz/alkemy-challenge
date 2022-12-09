@@ -27,7 +27,7 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
               <h1 className="d-flex position-absolute top-0 end-0 m-2">
                 <BsHeartFill
                   className={`${
-                    favs.some((m) => m.id === movie.id)
+                    favs !== undefined && favs.some((m) => m.id === movie.id)
                       ? "text-danger"
                       : "text-light"
                   }`}

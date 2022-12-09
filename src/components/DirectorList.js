@@ -6,11 +6,13 @@ import swAlert from "@sweetalert/with-react";
 // hooks
 import { useState, useEffect } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // components
 import MovieList from "./MovieList";
 
-const DirectorList = ({ token, favs, addOrRemoveFromFavs }) => {
+const DirectorList = ({ favs, addOrRemoveFromFavs }) => {
+  const { isAuthenticated } = useAuth0();
   const [directorList, setDirectorList] = useState([]);
   const [searchParams] = useSearchParams();
 
@@ -38,7 +40,7 @@ const DirectorList = ({ token, favs, addOrRemoveFromFavs }) => {
 
   return (
     <div className="row mb-4">
-      {!token ? (
+      {!isAuthenticated ? (
         <Navigate to={"/"} />
       ) : directorList.length === 0 ? (
         <div className="d-flex justify-content-center mt-3">

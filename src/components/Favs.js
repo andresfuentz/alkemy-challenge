@@ -3,14 +3,17 @@ import React from "react";
 
 // hooks
 import { Navigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // components
 import MovieList from "./MovieList";
 
-const Favs = ({ token, favourites, addOrRemoveFromFavs }) => {
+const Favs = ({ favourites, addOrRemoveFromFavs }) => {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <>
-      {!token && <Navigate to={"/"} />}
+      {!isAuthenticated && <Navigate to={"/"} />}
       <div className="row mb-4">
         {favourites.length === 0 ? (
           <h2 className="d-flex justify-content-center mt-3">

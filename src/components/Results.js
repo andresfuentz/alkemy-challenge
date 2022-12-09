@@ -6,11 +6,13 @@ import swAlert from "@sweetalert/with-react";
 // hooks
 import { useState, useEffect } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // components
 import MovieList from "./MovieList";
 
-const Results = ({ token, favs, addOrRemoveFromFavs }) => {
+const Results = ({ favs, addOrRemoveFromFavs }) => {
+  const { isAuthenticated } = useAuth0();
   const [loadedResults, setLoadedResults] = useState();
   const [movieResults, setMovieResults] = useState([]);
   const [searchParams] = useSearchParams();
@@ -41,7 +43,7 @@ const Results = ({ token, favs, addOrRemoveFromFavs }) => {
 
   return (
     <>
-      {!token && <Navigate to={"/"} />}
+      {!isAuthenticated && <Navigate to={"/"} />}
       <div className="row mb-4">
         {movieResults.length === 0 ? (
           !loadedResults ? (

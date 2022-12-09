@@ -5,6 +5,7 @@ import swAlert from "@sweetalert/with-react";
 //hooks
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //components
 import Login from "./components/Login";
@@ -18,7 +19,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const App = () => {
-  const [token, setToken] = useState("");
+  const { isLoading } = useAuth0();
 
   const localData =
     localStorage.getItem("favs") === null
@@ -52,67 +53,65 @@ const App = () => {
 
   return (
     <>
-      <Header token={token} favs={favourites} />
+      <Header favs={favourites} />
 
-      <div className="container">
-        <Routes>
-          <Route
-            path="/"
-            element={<Login token={token} setToken={setToken} />}
-          />
-          <Route
-            path="/list"
-            element={
-              <List
-                token={token}
-                favs={favourites}
-                addOrRemoveFromFavs={addOrRemoveFromFavs}
-              />
-            }
-          />
-          <Route path="/details" element={<Details token={token} />} />
-          <Route
-            path="/castDetails"
-            element={
-              <PersonList
-                token={token}
-                favs={favourites}
-                addOrRemoveFromFavs={addOrRemoveFromFavs}
-              />
-            }
-          />
-          <Route
-            path="/directorDetails"
-            element={
-              <DirectorList
-                token={token}
-                favs={favourites}
-                addOrRemoveFromFavs={addOrRemoveFromFavs}
-              />
-            }
-          />
-          <Route
-            path="/results"
-            element={
-              <Results
-                token={token}
-                favs={favourites}
-                addOrRemoveFromFavs={addOrRemoveFromFavs}
-              />
-            }
-          />
-          <Route
-            path="/favs"
-            element={
-              <Favs
-                token={token}
-                favourites={favourites}
-                addOrRemoveFromFavs={addOrRemoveFromFavs}
-              />
-            }
-          />
-        </Routes>
-      </div>
+      {isLoading ? (
+        <div className="d-flex justify-content-center mt-3">
+          <div className="spinner-border text-dark" role="status"></div>
+        </div>
+      ) : (
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/list"
+              element={
+                <List
+                  favs={favourites}
+                  addOrRemoveFromFavs={addOrRemoveFromFavs}
+                />
+              }
+            />
+            <Route path="/details" element={<Details />} />
+            <Route
+              path="/castDetails"
+              element={
+                <PersonList
+                  favs={favourites}
+                  addOrRemoveFromFavs={addOrRemoveFromFavs}
+                />
+              }
+            />
+            <Route
+              path="/directorDetails"
+              element={
+                <DirectorList
+                  favs={favourites}
+                  addOrRemoveFromFavs={addOrRemoveFromFavs}
+                />
+              }
+            />
+            <Route
+              path="/results"
+              element={
+                <Results
+                  favs={favourites}
+                  addOrRemoveFromFavs={addOrRemoveFromFavs}
+                />
+              }
+            />
+            <Route
+              path="/favs"
+              element={
+                <Favs
+                  favourites={favourites}
+                  addOrRemoveFromFavs={addOrRemoveFromFavs}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      )}
 
       <Footer />
     </>
