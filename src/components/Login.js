@@ -14,7 +14,7 @@ const Login = () => {
         <Navigate to={"/list"} />
       ) : (
         <div className="d-flex justify-content-center mt-3">
-          <div className="row border rounded">
+          <div className="row border rounded mx-2">
             <h3 className="mt-1">You are not logged!</h3>
             <p>Please login to continue.</p>
             <div className="col">
