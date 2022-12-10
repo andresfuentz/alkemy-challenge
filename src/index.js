@@ -8,9 +8,6 @@ import App from "./App";
 const container = document.getElementById("app");
 const root = createRoot(container);
 
-console.log(process.env.REACT_APP_AUTH0_CLIENT_ID);
-console.log(process.env.REACT_APP_AUTH0_DOMAIN);
-
 root.render(
   <StrictMode>
     <Auth0Provider

@@ -16,7 +16,11 @@ const Header = ({ favs }) => {
           <div className="container-fluid">
             <ul className="navbar-nav">
               <li className="navbar-brand me-0">
-                <Link className="nav-link" to="/">
+                <Link
+                  className={`nav-link ${location.pathname === "/list" &&
+                    "disabled"}`}
+                  to="/"
+                >
                   {"{ "}
                   <small className="text-secondary">the</small>
                   <span className="text-light"></span>MOVIE
@@ -27,7 +31,11 @@ const Header = ({ favs }) => {
 
               {location.pathname !== "/" && (
                 <li className="nav-item d-flex align-items-center mx-1">
-                  <Link className="nav-link" to="/favs">
+                  <Link
+                    className={`nav-link ${location.pathname === "/favs" &&
+                      "disabled"}`}
+                    to="/favs"
+                  >
                     Favs{" "}
                     <small className="badge bg-danger text-white">
                       {favs.length}

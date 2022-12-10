@@ -50,17 +50,20 @@ const Details = () => {
         </div>
       ) : (
         <div className="row my-3">
-          <div className="col-4">
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = poster;
-              }}
-              className="w-100"
-              alt="movie poster"
-            />
-          </div>
+          {window.innerWidth > 500 && (
+            <div className="col-4">
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = poster;
+                }}
+                className="w-100"
+                alt="movie poster"
+              />
+            </div>
+          )}
+
           <div className="col-8">
             <h1>{movie.title}</h1>
             {movie.genres.map((genre, i) => (
@@ -68,6 +71,17 @@ const Details = () => {
                 {genre.name}
               </small>
             ))}
+            {window.innerWidth < 501 && (
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = poster;
+                }}
+                className="w-100 mt-2"
+                alt="movie poster"
+              />
+            )}
             <p className="mt-2">{movie.overview}</p>
             <div className="mt-4">
               <strong>Director: </strong>

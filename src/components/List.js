@@ -41,11 +41,14 @@ const List = ({ favs, addOrRemoveFromFavs }) => {
           <div className="spinner-border text-dark" role="status"></div>
         </div>
       ) : (
-        <MovieList
-          movieList={movieList}
-          favs={favs}
-          addOrRemoveFromFavs={addOrRemoveFromFavs}
-        />
+        <>
+          <h2 className="d-flex justify-content-center mt-1">Popular:</h2>
+          <MovieList
+            movieList={movieList}
+            favs={favs}
+            addOrRemoveFromFavs={addOrRemoveFromFavs}
+          />
+        </>
       )}
     </div>
   );
