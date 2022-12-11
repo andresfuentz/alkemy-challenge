@@ -64,7 +64,7 @@ const Details = () => {
             </div>
           )}
 
-          <div className="col-8">
+          <div className={window.innerWidth > 500 ? "col-8" : "col-auto"}>
             <h1>{movie.title}</h1>
             {movie.genres.map((genre, i) => (
               <small key={i} className="badge bg-secondary me-1">
