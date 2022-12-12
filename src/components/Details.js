@@ -49,7 +49,7 @@ const Details = () => {
           <div className="spinner-border text-dark" role="status"></div>
         </div>
       ) : (
-        <div className="row">
+        <div className="row mb-4">
           {window.innerWidth > 767 && (
             <div className="col-4">
               <img
