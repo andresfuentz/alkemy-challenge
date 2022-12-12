@@ -50,7 +50,7 @@ const Details = () => {
         </div>
       ) : (
         <div className="row my-3">
-          {window.innerWidth > 500 && (
+          {window.innerWidth > 767 && (
             <div className="col-4">
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -64,14 +64,14 @@ const Details = () => {
             </div>
           )}
 
-          <div className={window.innerWidth > 500 ? "col-8" : "col-auto"}>
+          <div className={window.innerWidth > 767 ? "col-8" : "col-auto"}>
             <h1>{movie.title}</h1>
             {movie.genres.map((genre, i) => (
               <small key={i} className="badge bg-secondary me-1">
                 {genre.name}
               </small>
             ))}
-            {window.innerWidth < 501 && (
+            {window.innerWidth < 768 && (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 onError={(e) => {
