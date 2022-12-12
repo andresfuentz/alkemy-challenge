@@ -45,11 +45,11 @@ const Details = () => {
     <>
       {!isAuthenticated && <Navigate to={"/"} />}
       {movie.length === 0 ? (
-        <div className="d-flex justify-content-center mt-3">
+        <div className="d-flex justify-content-center">
           <div className="spinner-border text-dark" role="status"></div>
         </div>
       ) : (
-        <div className="row my-3">
+        <div className="row">
           {window.innerWidth > 767 && (
             <div className="col-4">
               <img
@@ -58,14 +58,14 @@ const Details = () => {
                   e.target.onerror = null;
                   e.target.src = poster;
                 }}
-                className="w-100"
+                className="w-100 p-2"
                 alt="movie poster"
               />
             </div>
           )}
 
           <div className={window.innerWidth > 767 ? "col-8" : "col-auto"}>
-            <h1>{movie.title}</h1>
+            <h1 className="mt-2">{movie.title}</h1>
             {movie.genres.map((genre, i) => (
               <small key={i} className="badge bg-secondary me-1">
                 {genre.name}
@@ -78,7 +78,7 @@ const Details = () => {
                   e.target.onerror = null;
                   e.target.src = poster;
                 }}
-                className="w-100 mt-2"
+                className="w-100 p-2"
                 alt="movie poster"
               />
             )}

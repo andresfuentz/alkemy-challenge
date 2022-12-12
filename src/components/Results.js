@@ -57,7 +57,7 @@ const Results = ({ favs, addOrRemoveFromFavs }) => {
           )
         ) : (
           <>
-            <h2 className="d-flex justify-content-center mt-1">
+            <h2 className="d-flex justify-content-center mt-2">
               Results to {`"${keyword}"`}:
             </h2>
             <MovieList
