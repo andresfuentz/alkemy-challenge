@@ -14,7 +14,11 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
       {movieList.map((movie, i) => {
         return (
           <div className="col-sm-6 col-md-4 col-lg-3 mt-2" key={i}>
-            <div className="card h-100">
+            <div
+              className={`card h-100 ${favs !== undefined &&
+                favs.some((m) => m.id === movie.id) &&
+                "border-danger border-opacity-25"}`}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 onError={(e) => {
@@ -51,7 +55,11 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
               <div className="text-center d-grid gap-2 m-2">
                 <Link
                   to={`/details?id=${movie.id}`}
-                  className="btn btn-secondary"
+                  className={`btn ${
+                    favs !== undefined && favs.some((m) => m.id === movie.id)
+                      ? "btn-danger"
+                      : "btn-secondary"
+                  }`}
                 >
                   {"[+] More"}
                 </Link>

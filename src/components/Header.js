@@ -4,6 +4,7 @@ import React from "react";
 // hooks
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { BsList } from "react-icons/bs";
 
 // components
 import Search from "./Search";
@@ -12,6 +13,12 @@ const Header = ({ favs }) => {
   let location = useLocation();
 
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    document
+      .getElementById("menuNav")
+      .setAttribute("class", "navbar-collapse collapse");
+  }, [location.pathname]);
 
   useEffect(() => {
     function handleWindowResize() {
@@ -31,15 +38,20 @@ const Header = ({ favs }) => {
         <div className="navbar navbar-expand-sm navbar-dark bg-dark">
           <div className="container-fluid">
             <button
+              id="btn-toggle-aria"
               type="button"
               className="navbar-toggler"
               data-bs-toggle="collapse"
               data-bs-target="#menuNav"
+              aria-expanded="false"
             >
-              <span className="navbar-toggler-icon"></span>
+              <BsList />
             </button>
 
-            <div className="navbar-brand user-select-none">
+            <div
+              className={`navbar-brand user-select-none ${innerWidth < 576 &&
+                "position-absolute top-0 start-50 translate-middle-x mt-1"}`}
+            >
               {"{ "}
               <small className="text-secondary">the</small>
               <span className="text-light"></span>MOVIE
