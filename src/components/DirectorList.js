@@ -49,7 +49,9 @@ const DirectorList = ({ favs, addOrRemoveFromFavs }) => {
       ) : (
         <>
           <h2 className="d-flex justify-content-center mt-1">
-            {personName} filmography:
+            <div className="badge rounded-pill text-bg-light">
+              {personName} filmography
+            </div>
           </h2>
           <MovieList
             movieList={directorList}
