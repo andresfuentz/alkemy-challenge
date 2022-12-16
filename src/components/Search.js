@@ -16,8 +16,6 @@ const Search = () => {
 
     if (keyword.length === 0) {
       swAlert(<h2>Keyword is empty!</h2>);
-    } else if (keyword.length < 4) {
-      swAlert(<h2>Keyword must be longer than four characters!</h2>);
     } else {
       e.currentTarget.keyword.value = "";
       navigate(`/results?keyword=${keyword}`);
