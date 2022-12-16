@@ -72,7 +72,15 @@ const App = () => {
                 />
               }
             />
-            <Route path="/details" element={<Details />} />
+            <Route
+              path="/details"
+              element={
+                <Details
+                  favs={favourites}
+                  addOrRemoveFromFavs={addOrRemoveFromFavs}
+                />
+              }
+            />
             <Route
               path="/castDetails"
               element={
