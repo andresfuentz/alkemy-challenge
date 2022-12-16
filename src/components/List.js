@@ -42,8 +42,10 @@ const List = ({ favs, addOrRemoveFromFavs }) => {
         </div>
       ) : (
         <>
-          <h2 className="d-flex justify-content-center mt-2">
-            <div className="badge rounded-pill text-bg-light">Popular</div>
+          <h2 className="d-flex justify-content-center mt-3">
+            <div className="badge rounded-pill border-bottom border-dark border-opacity-25 text-bg-light">
+              Popular
+            </div>
           </h2>
           <MovieList
             movieList={movieList}

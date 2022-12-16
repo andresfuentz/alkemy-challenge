@@ -21,8 +21,10 @@ const Favs = ({ favourites, addOrRemoveFromFavs }) => {
           </h2>
         ) : (
           <>
-            <h2 className="d-flex justify-content-center mt-2">
-              <div className="badge rounded-pill text-bg-danger">Favs</div>
+            <h2 className="d-flex justify-content-center mt-3">
+              <div className="badge rounded-pill border-bottom border-dark border-opacity-25 text-bg-danger">
+                Favs
+              </div>
             </h2>
             <MovieList
               movieList={favourites}

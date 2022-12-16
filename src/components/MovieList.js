@@ -13,11 +13,13 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
     <>
       {movieList.map((movie, i) => {
         return (
-          <div className="col-sm-6 col-md-4 col-lg-3 mt-2" key={i}>
+          <div className="col-sm-6 col-md-4 col-lg-3 p-2" key={i}>
             <div
-              className={`card h-100 ${favs !== undefined &&
-                favs.some((m) => m.id === movie.id) &&
-                "border-danger border-opacity-25"}`}
+              className={`card h-100 ${
+                favs !== undefined && favs.some((m) => m.id === movie.id)
+                  ? "border-danger border-opacity-25"
+                  : "border-dark border-opacity-25"
+              }`}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
