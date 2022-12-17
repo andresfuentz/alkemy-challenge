@@ -18,7 +18,8 @@ const Header = ({ favs }) => {
     document
       .getElementById("menuNav")
       .setAttribute("class", "navbar-collapse collapse");
-  }, [location.pathname]);
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     function handleWindowResize() {
