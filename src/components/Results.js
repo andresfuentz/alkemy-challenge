@@ -114,26 +114,30 @@ const Results = ({ favs, addOrRemoveFromFavs }) => {
               favs={favs}
               addOrRemoveFromFavs={addOrRemoveFromFavs}
             />
-            <div className="row mx-0">
-              <div className="col d-flex justify-content-start user-select-none">
+            <div className="row mx-0 p-2">
+              <div className="col d-flex justify-content-start p-0">
                 <span
-                  className="badge rounded-pill border border-dark border-opacity-25 text-bg-light"
-                  role={currentPage !== pages ? "button" : ""}
+                  className={`border rounded border-dark border-opacity-25 text-bg-light ${currentPage ===
+                    1 && "d-none"}`}
+                  role={currentPage !== 1 ? "button" : ""}
                   onClick={() => handlePreviousPage()}
                 >
-                  <BsArrowLeft />
+                  <BsArrowLeft className="mx-4 my-2" />
                 </span>
               </div>
               <div className="col d-flex justify-content-center">
-                <small>Page {currentPage}</small>
+                <small className="user-select-none my-2">
+                  Page {currentPage}/{pages}
+                </small>
               </div>
-              <div className="col d-flex justify-content-end user-select-none">
+              <div className="col d-flex justify-content-end p-0">
                 <span
-                  className="badge rounded-pill border border-dark border-opacity-25 text-bg-light"
-                  role={currentPage !== pages ? "button" : ""}
+                  className={`border rounded border-dark border-opacity-25 text-bg-light ${currentPage ===
+                    pages && "d-none"}`}
+                  role="button"
                   onClick={() => handleNextPage()}
                 >
-                  <BsArrowRight />
+                  <BsArrowRight className="mx-4 my-2" />
                 </span>
               </div>
             </div>
