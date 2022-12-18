@@ -7,7 +7,6 @@ import swAlert from "@sweetalert/with-react";
 import { useState, useEffect } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 
 // components
 import MovieList from "./MovieList";
@@ -114,31 +113,29 @@ const Results = ({ favs, addOrRemoveFromFavs }) => {
               favs={favs}
               addOrRemoveFromFavs={addOrRemoveFromFavs}
             />
-            <div className="row mx-0 p-2">
+            <div className="row m-0 px-2">
               <div className="col d-flex justify-content-start p-0">
-                <span
-                  className={`border rounded border-dark border-opacity-25 text-bg-light ${currentPage ===
+                <button
+                  className={`btn btn-light rounded border-dark border-opacity-25 ${currentPage ===
                     1 && "d-none"}`}
-                  role={currentPage !== 1 ? "button" : ""}
                   onClick={() => handlePreviousPage()}
                 >
-                  <BsArrowLeft className="mx-4 my-2" />
-                </span>
+                  <small className="mx-3">{"< "}Prev</small>
+                </button>
               </div>
-              <div className="col d-flex justify-content-center">
+              <div className="col d-flex justify-content-center p-0">
                 <small className="user-select-none my-2">
                   Page {currentPage}/{pages}
                 </small>
               </div>
               <div className="col d-flex justify-content-end p-0">
-                <span
-                  className={`border rounded border-dark border-opacity-25 text-bg-light ${currentPage ===
+                <button
+                  className={`btn btn-light rounded border-dark border-opacity-25 ${currentPage ===
                     pages && "d-none"}`}
-                  role="button"
                   onClick={() => handleNextPage()}
                 >
-                  <BsArrowRight className="mx-4 my-2" />
-                </span>
+                  <small className="mx-3">Next{" >"}</small>
+                </button>
               </div>
             </div>
           </>

@@ -46,7 +46,7 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
     <>
       {!isAuthenticated && <Navigate to={"/"} />}
       {movie.length === 0 ? (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-3">
           <div className="spinner-border text-dark" role="status"></div>
         </div>
       ) : (
