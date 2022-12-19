@@ -47,7 +47,11 @@ const MovieList = ({ movieList, favs, addOrRemoveFromFavs }) => {
                 <BsHeart className="text-dark" />
               </h1>
               <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
+                <h5 className="card-title">
+                  {movie.title}
+                  {movie.release_date.length > 0 &&
+                    " (" + movie.release_date.substring(0, 4) + ")"}
+                </h5>
                 <p className="card-text">
                   {movie.overview.length < 150
                     ? movie.overview

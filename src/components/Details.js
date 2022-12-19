@@ -84,7 +84,11 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
           )}
 
           <div className={window.innerWidth > 767 ? "col-8" : "col-auto"}>
-            <h1 className="mt-2">{movie.title}</h1>
+            <h1 className="mt-2">
+              {movie.title}
+              {movie.release_date.length > 0 &&
+                " (" + movie.release_date.substring(0, 4) + ")"}
+            </h1>
             {movie.genres.map((genre, i) => (
               <small key={i} className="badge bg-secondary me-1">
                 {genre.name}
@@ -159,11 +163,14 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
               )}
             </div>
             <div className="mt-2">
-              <strong>Release date:</strong> {movie.release_date}
+              <strong>Release date:</strong>{" "}
+              {movie.release_date.replace(/-/g, "/")}
             </div>
             <div className="mt-1">
               <strong>Rating:</strong>{" "}
-              {movie.vote_average.toString().substring(0, 3)}
+              {movie.vote_average < 1
+                ? "Not rated"
+                : movie.vote_average.toString().substring(0, 3)}
             </div>
             <div className="mt-1">
               <strong>
