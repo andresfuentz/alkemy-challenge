@@ -16,6 +16,7 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
   const { isAuthenticated } = useAuth0();
   const [movie, setMovie] = useState([]);
   const [credits, setCredits] = useState([]);
+  const [trailer, setTrailer] = useState([]);
   const [searchParams] = useSearchParams();
 
   let movieID = searchParams.get("id");
@@ -23,13 +24,19 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
   useEffect(() => {
     const movieEndPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.REACT_APP_TMDB_TOKEN}&language=en-US`;
     const creditsEndPoint = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.REACT_APP_TMDB_TOKEN}&language=en-US`;
+    const trailerEndPoint = `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${process.env.REACT_APP_TMDB_TOKEN}&language=en-US`;
 
     axios
-      .all([axios.get(movieEndPoint), axios.get(creditsEndPoint)])
+      .all([
+        axios.get(movieEndPoint),
+        axios.get(creditsEndPoint),
+        axios.get(trailerEndPoint),
+      ])
       .then(
-        axios.spread((movieResp, creditsResp) => {
+        axios.spread((movieResp, creditsResp, trailerResp) => {
           setMovie(movieResp.data);
           setCredits(creditsResp.data);
+          setTrailer(trailerResp.data.results);
         })
       )
       .catch((err) => {
@@ -79,6 +86,55 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
                 >
                   <BsHeart className="text-dark" />
                 </h1>
+                {trailer.filter((m) => m.type === "Trailer").length > 0 && (
+                  <div className="d-flex position-absolute bottom-0 start-0 p-2 m-2">
+                    <button
+                      className="btn btn-danger rounded border-dark"
+                      data-bs-toggle="modal"
+                      data-bs-target="#trailers-modal"
+                    >
+                      Trailer
+                    </button>
+                    <div
+                      className="modal fade"
+                      id="trailers-modal"
+                      aria-labelledby="trailers-modal"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id="trailers-modal"
+                            >
+                              Trailer of "{movie.title}":
+                            </h1>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div className="modal-body">
+                            <div class="ratio ratio-16x9">
+                              <iframe
+                                title={`${movie.title} trailer`}
+                                className="embed-responsive-item"
+                                src={`https://www.youtube.com/embed/${
+                                  trailer.find((m) => m.type === "Trailer").key
+                                }?enablejsapi=1`}
+                                allowscriptaccess="always"
+                                allow="autoplay"
+                              ></iframe>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -121,6 +177,55 @@ const Details = ({ favs, addOrRemoveFromFavs }) => {
                 >
                   <BsHeart className="text-dark" />
                 </h1>
+                {trailer.filter((m) => m.type === "Trailer").length > 0 && (
+                  <div className="d-flex position-absolute bottom-0 start-0 p-2 m-2">
+                    <button
+                      className="btn btn-danger rounded border-dark"
+                      data-bs-toggle="modal"
+                      data-bs-target="#trailers-modal"
+                    >
+                      Trailer
+                    </button>
+                    <div
+                      className="modal fade"
+                      id="trailers-modal"
+                      aria-labelledby="trailers-modal"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id="trailers-modal"
+                            >
+                              Trailer of "{movie.title}":
+                            </h1>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div className="modal-body">
+                            <div class="ratio ratio-16x9">
+                              <iframe
+                                title={`${movie.title} trailer`}
+                                className="embed-responsive-item"
+                                src={`https://www.youtube.com/embed/${
+                                  trailer.find((m) => m.type === "Trailer").key
+                                }?enablejsapi=1`}
+                                allowscriptaccess="always"
+                                allow="autoplay"
+                              ></iframe>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
             <p className="mt-2">{movie.overview}</p>
